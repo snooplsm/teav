@@ -1,11 +1,10 @@
 package us.wmwm.teav.fragments;
 
-import java.util.Collections;
-
-import us.wmwm.teav.DbHelper;
 import us.wmwm.teav.R;
 import us.wmwm.teav.adapters.ShowAdapter;
+import us.wmwm.teav.services.NotificationService;
 import android.app.Fragment;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -13,7 +12,6 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -95,7 +93,9 @@ public class FragmentShows extends Fragment {
 					prefs.edit()
 							.putLong(c.getString(1), System.currentTimeMillis())
 							.commit();
-					Log.d("SHOWS",""+DbHelper.getInstance().getSchedule(Collections.singleton(c.getString(1))).getCount());
+					
+					arg1.getContext().startService(new Intent(arg1.getContext(), NotificationService.class).putExtra("now", System.currentTimeMillis()));
+					//Log.d("SHOWS",""+DbHelper.getInstance().getSchedule(Collections.singleton(c.getString(1)),0,Long.MAX_VALUE).getCount());
 				}
 				adapter.notifyDataSetChanged();
 			}

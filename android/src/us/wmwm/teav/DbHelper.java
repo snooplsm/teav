@@ -30,7 +30,7 @@ public class DbHelper {
 		return getShows("");
 	}
 	
-	public Cursor getSchedule(Collection<String> favs) {
+	public Cursor getSchedule(Collection<String> favs, long begin, long end) {
 		StringBuilder b = new StringBuilder("select name, id as _id, id, time, network, title, episode from schedule where 1=1 ");
 		if(favs!=null && !favs.isEmpty()) {
 			b.append("and id in (");
@@ -43,6 +43,10 @@ public class DbHelper {
 			}
 			b.append(")");
 		}
+		
+		b.append(" AND time between ").append(begin).append(" AND " ).append(end);
+		
+		b.append(" order by time asc ");
 		return db.rawQuery(b.toString(), null);
 		
 	}
