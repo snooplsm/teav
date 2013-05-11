@@ -5,6 +5,7 @@ import java.util.Iterator;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 public class DbHelper {
 
@@ -36,7 +37,7 @@ public class DbHelper {
 			b.append("and id in (");
 			Iterator<String> k = favs.iterator();
 			while(k.hasNext()) {
-				b.append(k.next());
+				b.append("'"+k.next()+"'");
 				if(k.hasNext()) {
 					b.append(",");
 				}
@@ -44,9 +45,10 @@ public class DbHelper {
 			b.append(")");
 		}
 		
-		b.append(" AND time between ").append(begin).append(" AND " ).append(end);
+		b.append(" AND time between ").append(begin/1000).append(" AND " ).append(end/1000);
 		
 		b.append(" order by time asc ");
+		Log.d("DB",b.toString());
 		return db.rawQuery(b.toString(), null);
 		
 	}

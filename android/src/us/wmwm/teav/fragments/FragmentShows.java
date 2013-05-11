@@ -94,7 +94,7 @@ public class FragmentShows extends Fragment {
 							.putLong(c.getString(1), System.currentTimeMillis())
 							.commit();
 					
-					arg1.getContext().startService(new Intent(arg1.getContext(), NotificationService.class).putExtra("now", System.currentTimeMillis()));
+					arg1.getContext().startService(new Intent(arg1.getContext(), NotificationService.class).putExtra("time", System.currentTimeMillis()));
 					//Log.d("SHOWS",""+DbHelper.getInstance().getSchedule(Collections.singleton(c.getString(1)),0,Long.MAX_VALUE).getCount());
 				}
 				adapter.notifyDataSetChanged();

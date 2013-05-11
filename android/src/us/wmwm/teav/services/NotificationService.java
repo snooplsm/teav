@@ -69,6 +69,8 @@ public class NotificationService extends Service {
 		
 		b.setContent(n.getView());
 		
+		b.setSmallIcon(android.R.drawable.stat_notify_voicemail);
+		
 		Notification notif = b.build();
 		
 		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {

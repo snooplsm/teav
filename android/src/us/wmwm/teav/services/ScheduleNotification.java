@@ -20,9 +20,10 @@ public class ScheduleNotification {
 
 	public void init(Cursor cursor) {
 		for (int i = 0; i < Math.min(cursor.getCount(), 10); i++) {
+			cursor.moveToNext();
 			int res = ctx.getResources().getIdentifier("notif_"+i, "id", ctx.getPackageName());
 			String name = cursor.getString(0);
-			long time= cursor.getLong(3);
+			long time= cursor.getLong(3)*1000;
 			Calendar cal = Calendar.getInstance();
 			cal.setTimeInMillis(time);
 			r.setTextViewText(res, name + " " + cal.getTime());			

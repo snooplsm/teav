@@ -23,6 +23,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
+        <service android:name="us.wmwm.teav.services.NotificationService">
+                                 
+        </service>
+        
+        <receiver android:name="us.wmwm.teav.services.TeavReceiver">
+            
+            <intent-filter >
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                
+            </intent-filter>
+            
+        </receiver>
     </application>
 
 </manifest>

@@ -8,7 +8,7 @@ public class TeavReceiver extends BroadcastReceiver {
 
 	@Override
 	public void onReceive(Context ctx, Intent arg1) {
-		ctx.startActivity(new Intent(ctx,NotificationService.class).putExtra("intent", arg1));
+		ctx.startActivity(new Intent(ctx,NotificationService.class).putExtra("now", System.currentTimeMillis()));
 	}
 
 }
