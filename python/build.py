@@ -25,7 +25,6 @@ c.execute("""CREATE TABLE schedule (
 		id INT,
 		day varchar(20),
 		time integer,
-		
 		network VARCHAR(20),
 		title VARCHAR(255),
 		episode varchar(20),
@@ -35,7 +34,7 @@ for day in scheduleRoot.iter('DAY'):
 	for time in day.iter('time'):
 		showtime = day.attrib['attr'] + " " + time.attrib['attr']
 		showStart = datetime.strptime(showtime,"%Y-%m-%d %H:%M")
-		showStart = long(tk.mktime(showStart.timetuple()))*1000
+		showStart = long(tk.mktime(showStart.timetuple()))
 		for show in time.iter('show'):
 			c.execute("INSERT INTO schedule(name,id,day,time,network,title,episode,link) values(?,?,?,?,?,?,?,?)",
 				(show.attrib['name'],show.find('sid').text,day.attrib['attr'],showStart,show.find('network').text,show.find('title').text,show.find('ep').text,show.find('link').text))

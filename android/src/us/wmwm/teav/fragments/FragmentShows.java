@@ -25,7 +25,7 @@ public class FragmentShows extends Fragment {
 	
 	EditText search;
 	
-	ShowAdapter adapter;
+	private ShowAdapter adapter;
 	
 	Handler handler = new Handler();
 	
@@ -52,7 +52,11 @@ public class FragmentShows extends Fragment {
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-		list.setAdapter(adapter = new ShowAdapter(getActivity()));
+		init();
+	}
+	
+	protected void init() {
+list.setAdapter(adapter = new ShowAdapter(getActivity()));
 		
 		search.addTextChangedListener(new TextWatcher() {
 			

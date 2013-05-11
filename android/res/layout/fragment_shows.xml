@@ -19,18 +19,4 @@
         android:layout_height="match_parent" >
     </ListView>
 
-    <RelativeLayout
-        android:id="@+id/k"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" >
-
-        <ImageView
-            
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:background="#55cccccc" />
-    </RelativeLayout>
-
 </RelativeLayout>

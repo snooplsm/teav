@@ -1,8 +1,7 @@
 package us.wmwm.teav;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.StringTokenizer;
+import java.util.Collection;
+import java.util.Iterator;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -29,6 +28,23 @@ public class DbHelper {
 	
 	public Cursor getShows() {
 		return getShows("");
+	}
+	
+	public Cursor getSchedule(Collection<String> favs) {
+		StringBuilder b = new StringBuilder("select name, id as _id, id, time, network, title, episode from schedule where 1=1 ");
+		if(favs!=null && !favs.isEmpty()) {
+			b.append("and id in (");
+			Iterator<String> k = favs.iterator();
+			while(k.hasNext()) {
+				b.append(k.next());
+				if(k.hasNext()) {
+					b.append(",");
+				}
+			}
+			b.append(")");
+		}
+		return db.rawQuery(b.toString(), null);
+		
 	}
 
 	public Cursor getShows(String query) {
