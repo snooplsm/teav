@@ -1,0 +1,4 @@
+android/bin
+android/gen
+python/target
+*.DS_Store
