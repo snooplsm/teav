@@ -15,7 +15,7 @@
         android:name=".App"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="us.wmwm.teav.MainActivity"
+            android:name="us.wmwm.teav.activities.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -24,7 +24,7 @@ public class ShowAdapter extends CursorAdapter {
 	public void bindView(View v, Context ctx, Cursor c) {
 		// TODO Auto-generated method stub
 		ShowListItem i = (ShowListItem)v;
-		i.text.setText(c.getString(0) + c.getString(1));
+		i.text.setText(c.getString(0));
 		boolean fav = false;
 		if(prefs.contains(c.getString(1))) {
 			fav = true;
