@@ -1,9 +1,7 @@
 package us.wmwm.teav.adapters;
 
-import us.wmwm.teav.DbHelper;
 import android.content.Context;
 import android.database.Cursor;
-import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -14,7 +12,7 @@ public class ScheduleAdapter extends FragmentPagerAdapter {
 	
 	public ScheduleAdapter(Context ctx, FragmentManager manager) {
 		super(manager);
-		cursor = DbHelper.getInstance().getSchedule(PreferenceManager.getDefaultSharedPreferences(ctx).getAll().keySet());
+		//cursor = DbHelper.getInstance().getSchedule(PreferenceManager.getDefaultSharedPreferences(ctx).getAll().keySet());
 	}
 
 	@Override
