@@ -31,6 +31,13 @@ public class FragmentShows extends Fragment {
 	Handler handler = new Handler();
 
 	SharedPreferences prefs;
+	
+	boolean showFavs = false;
+	
+	public FragmentShows showFavs(boolean b) {
+		showFavs = b;
+		return this;
+	}
 
 	Runnable updateAdapter = new Runnable() {
 		@Override
@@ -56,8 +63,13 @@ public class FragmentShows extends Fragment {
 		init();
 	}
 
-	protected void init() {
+	protected void init() {		
 		list.setAdapter(adapter = new ShowAdapter(getActivity()));
+		
+		if(showFavs) {
+			search.setVisibility(View.GONE);
+			adapter.showFavs(prefs.getAll().keySet());
+		}
 
 		search.addTextChangedListener(new TextWatcher() {
 
@@ -100,6 +112,8 @@ public class FragmentShows extends Fragment {
 				adapter.notifyDataSetChanged();
 			}
 		});
+		
+		
 	}
 
 }

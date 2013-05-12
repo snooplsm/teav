@@ -16,6 +16,8 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="us.wmwm.teav.activities.MainActivity"
+            android:screenOrientation="portrait"
+            android:launchMode="singleInstance"            
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,6 +26,11 @@
             </intent-filter>
         </activity>
         
+        <activity
+            android:screenOrientation="portrait"
+            android:label="@string/activity_favorites"
+            android:launchMode="singleInstance"
+            android:name="us.wmwm.teav.activities.FavoriteShowsActivity"/>
         <service android:name="us.wmwm.teav.services.NotificationService">
                                  
         </service>
@@ -32,7 +39,7 @@
             
             <intent-filter >
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
-                
+            
             </intent-filter>
             
         </receiver>

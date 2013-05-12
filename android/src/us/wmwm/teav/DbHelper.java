@@ -2,6 +2,7 @@ package us.wmwm.teav;
 
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.Set;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -47,7 +48,7 @@ public class DbHelper {
 		
 		b.append(" AND time between ").append(begin/1000).append(" AND " ).append(end/1000);
 		
-		b.append(" order by time asc ");
+		b.append(" order by time asc, name asc ");
 		Log.d("DB",b.toString());
 		return db.rawQuery(b.toString(), null);
 		
@@ -74,6 +75,27 @@ public class DbHelper {
 		
 		b.append(" order by name asc");
 		return db.rawQuery(b.toString(), new String[]{query+"%"});
+	}
+
+	public Cursor getShows(Set<String> favs) {
+		StringBuilder b = new StringBuilder("select name, id as _id, id from show ");
+		if(favs!=null && !favs.isEmpty()) {
+			b.append("where id in ( ");
+			
+			Iterator<String> iter = favs.iterator();
+			while(iter.hasNext()) {
+				b.append("'"+iter.next()+"'");
+				if(iter.hasNext()) {
+					b.append(",");
+				}
+			}
+			
+			b.append(") ");
+ 		}
+		
+		b.append(" order by name asc");
+		
+		return db.rawQuery(b.toString(),null);
 	}
 
 }

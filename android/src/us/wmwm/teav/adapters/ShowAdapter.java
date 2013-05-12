@@ -1,5 +1,7 @@
 package us.wmwm.teav.adapters;
 
+import java.util.Set;
+
 import us.wmwm.teav.DbHelper;
 import us.wmwm.teav.views.ShowListItem;
 import android.content.Context;
@@ -38,6 +40,10 @@ public class ShowAdapter extends CursorAdapter {
 		return new ShowListItem(context);
 	}
 
+	public void showFavs(Set<String> favs) {
+		swapCursor(DbHelper.getInstance().getShows(favs));
+	}
+	
 	public void update(String string) {
 		swapCursor(DbHelper.getInstance().getShows(string));
 	}

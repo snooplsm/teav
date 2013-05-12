@@ -6,12 +6,14 @@ import us.wmwm.teav.R;
 import us.wmwm.teav.fragments.FragmentShows;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 
 import com.happytap.schedule.service.ThreadHelper;
 
@@ -40,6 +42,8 @@ public class MainActivity extends Activity {
 			}
 		}
 	};
+	
+	
 
 	private Runnable onDbCreate = new Runnable() {
 		@Override
@@ -48,6 +52,7 @@ public class MainActivity extends Activity {
 			init();
 		}
 	};
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +81,14 @@ public class MainActivity extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.activity_main, menu);
 		return true;
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		if(item.getItemId()==R.id.menu_favorites) {
+			startActivity(new Intent(this,FavoriteShowsActivity.class));
+		}
+		return super.onOptionsItemSelected(item);
 	}
 
 }

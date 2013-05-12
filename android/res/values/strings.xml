@@ -2,7 +2,9 @@
 <resources>
 
     <string name="app_name">TeaV</string>
-    <string name="menu_settings">Settings</string>
+    <string name="menu_shows">Show List</string>
+    <string name="menu_favorites">Favorites</string>
     <string name="hello_world">Hello world!</string>
+    <string name="activity_favorites">Favorites</string>
 
 </resources>

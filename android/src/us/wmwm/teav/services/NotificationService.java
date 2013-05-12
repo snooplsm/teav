@@ -3,6 +3,8 @@ package us.wmwm.teav.services;
 import java.util.Calendar;
 
 import us.wmwm.teav.DbHelper;
+import us.wmwm.teav.activities.FavoriteShowsActivity;
+import android.R;
 import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -12,6 +14,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
@@ -58,7 +61,10 @@ public class NotificationService extends Service {
 		Calendar cal = Calendar.getInstance();
 		cal.add(Calendar.HOUR_OF_DAY, 6);
 		Cursor cursor = DbHelper.getInstance().getSchedule(prefs.getAll().keySet(),time,cal.getTimeInMillis());
-		
+		if(cursor.getCount()==0) {
+			cursor.close();
+			return;
+		}
 		ScheduleNotification n = new ScheduleNotification(this);
 		
 		n.init(cursor);
@@ -70,6 +76,10 @@ public class NotificationService extends Service {
 		b.setContent(n.getView());
 		
 		b.setSmallIcon(android.R.drawable.stat_notify_voicemail);
+		
+		b.setLargeIcon(((BitmapDrawable)getResources().getDrawable(R.drawable.stat_notify_more)).getBitmap());
+		
+		b.setContentIntent(PendingIntent.getActivity(this, 0, new Intent(this,FavoriteShowsActivity.class), 0));
 		
 		Notification notif = b.build();
 		

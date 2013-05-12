@@ -1,10 +1,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <item
-        android:id="@+id/menu_favorites"
+        android:id="@+id/menu_shows"
         android:icon="@drawable/ic_device_access_storage"
         android:orderInCategory="100"
         android:showAsAction="always"
-        android:title="@string/menu_favorites"/>
+        android:title="@string/menu_shows"/>
 
 </menu>
