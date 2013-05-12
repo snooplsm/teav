@@ -2,16 +2,16 @@ package us.wmwm.teav.activities;
 
 import us.wmwm.teav.R;
 import us.wmwm.teav.fragments.FragmentShows;
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class FavoriteShowsActivity extends Activity {
+public class FavoriteShowsActivity extends FragmentActivity {
 
 	SharedPreferences prefs;
 
@@ -27,7 +27,7 @@ public class FavoriteShowsActivity extends Activity {
 
 	private void init() {
 		// TODO Auto-generated method stub
-		getFragmentManager().beginTransaction().replace(R.id.fragment_main, new FragmentShows().showFavs(true)).commit();
+		getSupportFragmentManager().beginTransaction().replace(R.id.fragment_main, new FragmentShows().showFavs(true)).commit();
 	}
 
 	@Override

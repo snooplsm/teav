@@ -3,21 +3,22 @@ package us.wmwm.teav.activities;
 import org.apache.commons.io.IOUtils;
 
 import us.wmwm.teav.R;
+import us.wmwm.teav.fragments.FragmentSchedule;
 import us.wmwm.teav.fragments.FragmentShows;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.happytap.schedule.service.ThreadHelper;
 
-public class MainActivity extends Activity {
+public class MainActivity extends FragmentActivity {
 
 	SharedPreferences prefs;
 
@@ -73,7 +74,11 @@ public class MainActivity extends Activity {
 
 	private void init() {
 		// TODO Auto-generated method stub
-		getFragmentManager().beginTransaction().replace(R.id.fragment_main, new FragmentShows()).commit();
+		if(prefs.getAll().size()>1) {
+			getSupportFragmentManager().beginTransaction().replace(R.id.fragment_main, new FragmentSchedule()).commit();
+		} else {
+			getSupportFragmentManager().beginTransaction().replace(R.id.fragment_main, new FragmentShows()).commit();
+		}
 	}
 
 	@Override

@@ -98,4 +98,25 @@ public class DbHelper {
 		return db.rawQuery(b.toString(),null);
 	}
 
+	public Cursor getDays(Set<String> favs, long minValue, long maxValue) {
+		StringBuilder b = new StringBuilder("select time from schedule where 1=1 ");
+		if(favs!=null && !favs.isEmpty()) {
+			b.append("and id in (");
+			Iterator<String> k = favs.iterator();
+			while(k.hasNext()) {
+				b.append("'"+k.next()+"'");
+				if(k.hasNext()) {
+					b.append(",");
+				}
+			}
+			b.append(")");
+		}
+		
+		b.append(" AND time between ").append(minValue/1000).append(" AND " ).append(maxValue/1000);
+		
+		b.append(" group by date(time) order by time asc");
+		Log.d("DB",b.toString());
+		return db.rawQuery(b.toString(), null);		
+	}
+
 }
